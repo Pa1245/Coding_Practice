@@ -1,4 +1,5 @@
 import math
+import timeit
 
 def isPrime(number):
     if number == 1:
@@ -23,11 +24,20 @@ def isPrime(number):
     return True
 
 def main():
-    total = 2
-    for i in range(1, 2*int(math.pow(10, 6)), 2):
+    start_time = timeit.default_timer()
+    total = 5
+    limit = 2000000
+    i = 5
+    while i <= limit:
         if isPrime(i):
             total = total + i
+        i = i+2
+        if i <= limit and isPrime(i):
+            total = total+i
+        i = i+4
+    elapsed = timeit.default_timer() - start_time
     print total
+    print elapsed
 
 if __name__ == '__main__':
     main()
